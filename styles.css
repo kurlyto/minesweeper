@@ -1,0 +1,32 @@
+#board {
+  display: grid;
+  grid-template-columns: repeat(var(--cols, 1), 40px);
+  grid-template-rows: repeat(var(--rows, 1), 40px);
+  gap: 0;
+}
+
+.spot:hover {
+    background-color: rgb(100, 100, 200);
+    cursor:pointer;
+}
+
+.spot {
+  width: 40px;
+  height: 40px;
+  border: 1px solid black;
+  background-color: rgb(56, 56, 134);
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.bomb {
+    background-color: red;
+}
+
+#restart-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  justify-items: center;
+}
