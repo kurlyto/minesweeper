@@ -270,6 +270,10 @@ function findAdjacentBombs(mapIndex, mapArray, realNeighbors) {
   return neighborBombCount;
 }
 
+function playLose() {
+  document.getElementById("loseSound").play();
+}
+
 function hint() {
   const hint = document.querySelectorAll("hint-button");
   hint.addEventListener("click", () => {
@@ -294,6 +298,7 @@ function checkGameStatus() {
     endMessage.appendChild(winMessage); // j'ajoute le message à la section
   }
   if (isGameEnd && hasLost) {
+    playLose();
     const endMessage = document.getElementById("endMessage"); // je sélectionne la section du message
     endMessage.innerHTML = "";
     const lostMessage = document.createElement("div"); //je créé une div message
