@@ -58,8 +58,8 @@ h3 {
 .safe{
     background-color:antiquewhite;
     font-size: 16px;
-    font-weight: bold;
     font-family:'Press Start 2P', cursive;
+    background-color:antiquewhite;
     color: black;
 }
 .safe:hover{

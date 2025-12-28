@@ -19,9 +19,26 @@ function listenDifficultyButtons() {
   });
 }
 
-function hintButtonListener() {
+function listenToHint() {
   const hintButton = document.getElementById("hint-button");
+  hintButton.addEventListener("click", () => {
+    if (mapArray.length === 0) return;
+    const buttons = document.querySelectorAll(".spot");
+    const hiddenSafeSpots = [];
+    mapArray.forEach((cell, index) => {
+      if (cell == 0 && !buttons[index].classList.contains("safe")) {
+        hiddenSafeSpots.push(index);
+      }
+    });
+    const randomIndex =
+      hiddenSafeSpots[Math.floor(Math.random() * hiddenSafeSpots.length)];
+    buttons[randomIndex].click();
+    console.log("Les spots safes sont : " + hiddenSafeSpots);
+  });
 }
+
+/*
+A chaque clique sur Hint, récupérer tous les index de mapArray qui sont égale à 0 et qui n'ont pas la classe "safe"  */
 
 //Console log des informations de la partie
 function showInformations() {
@@ -40,6 +57,7 @@ function createHTMLGrid() {
     const board = document.getElementById("board");
     board.innerHTML = "";
     totalCells = largeur * longueur;
+    console.log("Nombre total de cases : " + totalCells);
     for (let i = 0; i < totalCells; i++) {
       const button = document.createElement("button");
       button.classList.add("spot");
@@ -67,7 +85,7 @@ function createHTMLGrid() {
     const board = document.getElementById("board");
     board.innerHTML = "";
     totalCells = largeur * longueur;
-    console.log(totalCells);
+    console.log("Nombre total de cases : " + totalCells);
     for (let i = 0; i < totalCells; i++) {
       const button = document.createElement("button");
       button.classList.add("spot");
@@ -136,6 +154,7 @@ function revealBombs(mapArray) {
     document
       .querySelectorAll(".flagged")
       .forEach((flaggedButton) => flaggedButton.classList.remove("flagged"));
+    buttons.forEach((button) => (button.disabled = true));
   }
 }
 
@@ -157,7 +176,6 @@ function gameButtonListener(mapArray) {
         //on enlève le drapeau si la case était flaggée
         button.classList.remove("flagged");
         if (neighborBombCount > 0) {
-          console.log(neighborBombCount);
           button.textContent = neighborBombCount;
           button.classList.add("safe");
         }
@@ -251,7 +269,6 @@ function findNeighbors(mapIndex, totalCells) {
   else {
     realNeighbors = potentialNeighbors;
   }
-  //console.log("Les voisins de la case " + mapIndex + " sont :" + realNeighbors);
   return realNeighbors;
 }
 
@@ -274,22 +291,17 @@ function playLose() {
   document.getElementById("loseSound").play();
 }
 
-function hint() {
-  const hint = document.querySelectorAll("hint-button");
-  hint.addEventListener("click", () => {
-    console.log(mapArray);
-    console.log("yesss");
-  });
-}
-
 // Fonction pour vérifier le statut de la partie (gagnée, perdue ou en cours)
 function checkGameStatus() {
   let hasWon =
-    document.querySelectorAll(".safe, .flagged").length === totalCells;
+    document.querySelectorAll(".safe, .flagged").length ===
+    totalCells - bombQuantity;
   let hasLost = document.querySelectorAll(".bomb-found").length > 0;
   let isGameEnd = hasWon || hasLost;
 
   if (isGameEnd && hasWon) {
+    const buttons = document.querySelectorAll(".spot");
+    buttons.forEach((button) => (button.disabled = true));
     const endMessage = document.getElementById("endMessage"); // je sélectionne la section du message
     endMessage.innerHTML = "";
     const winMessage = document.createElement("div"); //je créé une div message
@@ -340,4 +352,4 @@ function resetGame() {
 
 listenDifficultyButtons();
 resetGame();
-hint();
+listenToHint();
