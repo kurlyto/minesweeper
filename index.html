@@ -4,11 +4,38 @@
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="styles.css" />
     <title>Minesweeper</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   </head>
 
-  <body>
-    <div id="board"></div>
-    <button id="restart-button">Start Game</button>
+  <body style="background-color: rgb(177, 161, 161)">
+    <section id="title">
+    <h1>The Minesweeper</h1>
+    <h2 >Flag the bombs ! </h2>
+    </section>
+
+    <section id="board"></section>
+
+    <section id="endMessage"></section>
+
+    <section id="menu">
+    <div class="difficulty-section">
+      <h3>Select Difficulty</h3>
+        <button class="difficulty-button">Easy</button>
+        <button class="difficulty-button">Medium</button>
+        <button class="difficulty-button">Hard</button>
+    </div>
+    <div class="control-section">
+        <h3>Controls</h3>
+        <button id="hint-button">Hint</button>
+        <button id="reset-button">Reset</button>
+    </div>
+      </section>
+    </div>
+
     <script src="script.js"></script>
+    <footer>
+      <a target = "blank" href ="https://github.com/kurlyto/minesweeper">Nathan Knaebel - 2025</a></footer>
   </body>
 </html>

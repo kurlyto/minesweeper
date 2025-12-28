@@ -1,32 +1,178 @@
-#board {
-  display: grid;
-  grid-template-columns: repeat(var(--cols, 1), 40px);
-  grid-template-rows: repeat(var(--rows, 1), 40px);
-  gap: 0;
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* centre horizontalement */
+  justify-content: center; /* centre verticalement */
 }
 
-.spot:hover {
-    background-color: rgb(100, 100, 200);
-    cursor:pointer;
+#board {
+  display: grid;
+  margin: 20px 20px 20px 20px;
+  grid-template-columns: repeat(var(--cols, 1), 30px);
+  grid-template-rows: repeat(var(--rows, 1), 30px);
+  border: 1px solid black;
+}
+#board:empty{
+    border:none;
+}
+
+h1 {
+    margin-top:10px;
+    margin-bottom:30px;
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+}
+
+h2 {
+    margin: 10px;
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+}
+h1,h2,h3, footer:hover{
+    cursor:default;
+}
+
+
+h3 {
+    margin: 10px;
+    font-family: 'Press Start 2P', cursive;  
+}
+h3:after{
+    content:"\01F4A3";
 }
 
 .spot {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border: 1px solid black;
-  background-color: rgb(56, 56, 134);
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+  background-color: rgba(51, 94, 135, 0.593);
+}
+.spot:hover {
+    background-color: rgb(38, 38, 109);
+    cursor:pointer;
 }
 
-.bomb {
-    background-color: red;
+.safe{
+    background-color:rgb(240, 245, 240);
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+}
+.safe:hover{
+    cursor: default;
 }
 
-#restart-button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 16px;
+.bomb-found {
+    background-image:url('bombe.avif');
+    background-size: cover;
+}
+
+.bomb-found:hover{
+    cursor: default;
+}
+
+.flagged {
+    background-image:url('flag.png');
+    background-size: cover;
+    background-position: center;
+}
+
+#reset-button {
+  margin: 2px 4px;
+  padding: 5px 5px;
+  font-size: 12px;
+  width: 100px;
   justify-items: center;
+  background-color:antiquewhite;
+  font-family:'Press Start 2P', cursive;
+}
+#reset-button:hover{
+    cursor:pointer;
+    background-color:red;
+}
+
+.difficulty-button {
+    background-color: antiquewhite;
+    font-family: 'Press Start 2P', cursive;
+    font-size:12px;
+    width: 100px;
+    height: 30px;
+}
+
+.difficulty-button:hover {
+    cursor:pointer;
+    background-color: rgba(199, 181, 116, 0.633);
+}
+
+.difficulty-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.control-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+}
+
+#hint-button {
+  padding: 5px 5px;
+  font-size: 12px;
+  width: 100px;
+  justify-items: center;
+  background-color:antiquewhite;
+  font-family:'Press Start 2P', cursive;
+}
+
+#hint-button:hover{
+    cursor:pointer;
+    background-color:rgb(35, 35, 147);
+}
+
+.end-game-win{
+    padding: 50px 50px;
+    font-size: 32px;
+    justify-items: center;
+    text-justify:center;
+    font-family: 'Press Start 2P', cursive;
+    color:rgb(46, 32, 230);
+    text-align: center;
+    text-justify:center;
+}
+
+.end-game-lose{
+    padding-top: 10px;
+    padding-bottom:40px;
+    font-size: 32px;
+    justify-items: center;
+    text-justify:center;
+    font-family: 'Press Start 2P', cursive;
+    color:rgb(205, 12, 12);
+    text-align: center;
+    text-justify:center;
+}
+
+#menu {
+    display:flex;
+    gap:5px;
+    flex-direction:column;
+    align-items:center;
+}
+
+footer{
+    margin : 50px;
+    text-align: center;
+    font-family: 'Press Start 2P', cursive; 
+    font-size: 7px; 
+    color:rgb(79, 79, 79);
+}
+a{
+    text-decoration:none;
+    color:rgb(79, 79, 79);
 }
